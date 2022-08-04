@@ -4,5 +4,8 @@
 
 <p align="center">
   Template for this code: https://github.com/reactivando/template-react-typescript
+</p>
+
+<p align="center">
   See src/App.tsx and src/components/Button for the code I actually wrote
 </p>
