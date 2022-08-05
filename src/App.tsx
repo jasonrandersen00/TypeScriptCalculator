@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Button from './components/Button/Button'
+import Display from './components/Display/Display'
+import NumPad from './components/NumPad/NumPad'
 
 export const App = () => {
   //Use Webhooks to setup the state
@@ -23,7 +24,7 @@ export const App = () => {
     setDisplayResult(currentResult)
   }
 
-  const onMinusPlusClick = (operation: string) => {
+  const onOperatorClick = (operation: string) => {
     setOperation(operation)
     if (!leftOperand) {
       setLeftOperand(result)
@@ -40,13 +41,19 @@ export const App = () => {
 
       switch (operation) {
         case '+':
-          newResult = leftOperand + result  
+          newResult = leftOperand + result
           break
         case '-':
           newResult = leftOperand - result
           break
+        case '*':
+          newResult = leftOperand * result
+          break
+        case '/':
+          newResult = leftOperand / result
+          break
       }
-      
+
       setResult(newResult)
       setDisplayResult(newResult.toString())
     }
@@ -62,93 +69,17 @@ export const App = () => {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          border: "line",
-          backgroundColor: "white",
-          height: "25px",
-        }}>{leftOperand ? leftOperand : ""}{leftOperand ? (operation) : ""}{rightOperand ? rightOperand + "=" : ""}</div>
-      <div
-        style={{
-          border: "line",
-          backgroundColor: "white",
-          height: "25px",
-        }}>{result}</div>
-      <div>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(0)}
-          width="50px">{0}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(1)}
-          width="50px">{1}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(2)}
-          width="50px">{2}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(3)}
-          width="50px">{3}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(4)}
-          width="50px">{4}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(5)}
-          width="50px">{5}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(6)}
-          width="50px">{6}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(7)}
-          width="50px">{7}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(8)}
-          width="50px">{8}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(9)}
-          width="50px">{9}</Button>
-      </div>
-
-      <div>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onClearClick()}
-          width="50px">{"Clear"}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onMinusPlusClick('+')}
-          width="50px">{"+"}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onMinusPlusClick('-')}
-          width="50px">{"-"}</Button>
-        <Button
-          border="line"
-          height="50px"
-          onClick={() => onEqualClick()}
-          width="50px">{"="}</Button>
-      </div>
+      <Display 
+      leftOperand={leftOperand} 
+      rightOperand={rightOperand} 
+      operation={operation} 
+      result={result}/>
+      <NumPad
+        onNumberClick={onNumberClick}
+        onClearClick={onClearClick}
+        onOperatorClick={onOperatorClick}
+        onEqualClick={onEqualClick}
+      />
     </React.Fragment>
   )
 }
