@@ -6,13 +6,15 @@ interface Props {
     rightOperand: number;
     operator: string;
     result: number;
+    displayResult: string;
 }
 
 const Display: React.FC<Props> = ({
     leftOperand,
     rightOperand,
     operator,
-    result
+    result,
+    displayResult
 }) => {
     return (
         <React.Fragment>
@@ -21,7 +23,7 @@ const Display: React.FC<Props> = ({
                     border: "line",
                     backgroundColor: "white",
                     height: "25px",
-                }}>{leftOperand ? leftOperand : ""}{leftOperand ? (operator) : ""}{rightOperand ? rightOperand + "=" + result : ""}</div>
+                }}>{leftOperand ? leftOperand : ""}{leftOperand ? (operator) : ""}{displayResult !== "" ? rightOperand + "=" + displayResult : ""}</div>
             <div
                 style={{
                     border: "line",

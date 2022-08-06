@@ -52,8 +52,8 @@ const NumPad: React.FC<Props> = ({
           onClick={() => onOperatorClick('*')}>{"*"}</Button>
         <Button
           onClick={() => onOperatorClick('/')}>{"/"}</Button>
-          <Button
-            onClick={() => onDeleteClick()}>{"<-"}</Button>
+        <Button
+          onClick={() => onDeleteClick()}>{"<-"}</Button>
         <Button
           onClick={() => onEqualClick()}>{"="}</Button>
       </div>

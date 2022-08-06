@@ -8,6 +8,7 @@ export const App = () => {
   const [leftOperand, setLeftOperand] = useState<number>(0)
   const [rightOperand, setRightOperand] = useState<number>(0)
   const [result, setResult] = useState<number>(0)
+  const [displayResult, setDisplayResult] = useState<string>("")
 
 
   const onNumberClick = (number: number) => {
@@ -47,14 +48,19 @@ export const App = () => {
           newResult = leftOperand * result
           break
         case '/':
-          if (result === 0){
+          if (result === 0) {
+            setDisplayResult("Error")
             return
           }
-          newResult = leftOperand / result
+          else {
+            newResult = leftOperand / result
+          }
           break
       }
 
-      setResult(newResult)
+      setResult(0)
+      setDisplayResult(newResult.toString())
+
     }
   }
 
@@ -63,13 +69,14 @@ export const App = () => {
     setLeftOperand(0)
     setRightOperand(0)
     setOperator("")
+    setDisplayResult("")
   }
 
   const onDeleteClick = () => {
     let currentResult = result.toString();
 
     if (currentResult !== "0") {
-      currentResult = currentResult.slice(0,-1)
+      currentResult = currentResult.slice(0, -1)
     }
 
     setResult(Number(currentResult))
@@ -77,11 +84,12 @@ export const App = () => {
 
   return (
     <React.Fragment>
-      <Display 
-      leftOperand={leftOperand} 
-      rightOperand={rightOperand} 
-      operator={operator} 
-      result={result}
+      <Display
+        leftOperand={leftOperand}
+        rightOperand={rightOperand}
+        operator={operator}
+        result={result}
+        displayResult={displayResult}
       />
       <NumPad
         onNumberClick={onNumberClick}
