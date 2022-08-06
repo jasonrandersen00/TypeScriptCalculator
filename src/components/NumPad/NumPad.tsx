@@ -6,6 +6,7 @@ interface Props {
   onClearClick: () => void;
   onOperatorClick: (operation: string) => void;
   onEqualClick: () => void;
+  onDeleteClick: () => void;
 }
 
 const NumPad: React.FC<Props> = ({
@@ -13,93 +14,48 @@ const NumPad: React.FC<Props> = ({
   onClearClick,
   onOperatorClick,
   onEqualClick,
+  onDeleteClick
 }) => {
   return (
     <React.Fragment>
       <div>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(0)}
-          width="50px">{0}</Button>
+          onClick={() => onNumberClick(0)}>{0}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(1)}
-          width="50px">{1}</Button>
+          onClick={() => onNumberClick(1)}>{1}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(2)}
-          width="50px">{2}</Button>
+          onClick={() => onNumberClick(2)}>{2}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(3)}
-          width="50px">{3}</Button>
+          onClick={() => onNumberClick(3)}>{3}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(4)}
-          width="50px">{4}</Button>
+          onClick={() => onNumberClick(4)}>{4}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(5)}
-          width="50px">{5}</Button>
+          onClick={() => onNumberClick(5)}>{5}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(6)}
-          width="50px">{6}</Button>
+          onClick={() => onNumberClick(6)}>{6}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(7)}
-          width="50px">{7}</Button>
+          onClick={() => onNumberClick(7)}>{7}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(8)}
-          width="50px">{8}</Button>
+          onClick={() => onNumberClick(8)}>{8}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onNumberClick(9)}
-          width="50px">{9}</Button>
+          onClick={() => onNumberClick(9)}>{9}</Button>
       </div>
 
       <div>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onClearClick()}
-          width="50px">{"Clear"}</Button>
+          onClick={() => onClearClick()}>{"Clear"}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onOperatorClick('+')}
-          width="50px">{"+"}</Button>
+          onClick={() => onOperatorClick('+')}>{"+"}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onOperatorClick('-')}
-          width="50px">{"-"}</Button>
+          onClick={() => onOperatorClick('-')}>{"-"}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onOperatorClick('*')}
-          width="50px">{"*"}</Button>
+          onClick={() => onOperatorClick('*')}>{"*"}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onOperatorClick('/')}
-          width="50px">{"/"}</Button>
+          onClick={() => onOperatorClick('/')}>{"/"}</Button>
+          <Button
+            onClick={() => onDeleteClick()}>{"<-"}</Button>
         <Button
-          border="line"
-          height="50px"
-          onClick={() => onEqualClick()}
-          width="50px">{"="}</Button>
+          onClick={() => onEqualClick()}>{"="}</Button>
       </div>
     </React.Fragment>
   );

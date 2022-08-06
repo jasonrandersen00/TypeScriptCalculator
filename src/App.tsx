@@ -4,15 +4,14 @@ import NumPad from './components/NumPad/NumPad'
 
 export const App = () => {
   //Use Webhooks to setup the state
-  const [displayResult, setDisplayResult] = useState<string>("0")//Result to display to the screen
-  const [operation, setOperation] = useState<string>("")
+  const [operator, setOperator] = useState<string>("")
   const [leftOperand, setLeftOperand] = useState<number>(0)
   const [rightOperand, setRightOperand] = useState<number>(0)
-  const [result, setResult] = useState<number>(0)//Result to display to the screen
+  const [result, setResult] = useState<number>(0)
 
 
   const onNumberClick = (number: number) => {
-    let currentResult = displayResult;
+    let currentResult = result.toString();
 
     if (currentResult !== "0") {
       currentResult = result + number.toString()
@@ -21,15 +20,13 @@ export const App = () => {
     }
 
     setResult(Number(currentResult))
-    setDisplayResult(currentResult)
   }
 
-  const onOperatorClick = (operation: string) => {
-    setOperation(operation)
+  const onOperatorClick = (operator: string) => {
+    setOperator(operator)
     if (!leftOperand) {
       setLeftOperand(result)
       setResult(0)
-      setDisplayResult("0")
     }
 
   }
@@ -39,7 +36,7 @@ export const App = () => {
       let newResult = 0
       setRightOperand(result)
 
-      switch (operation) {
+      switch (operator) {
         case '+':
           newResult = leftOperand + result
           break
@@ -50,21 +47,32 @@ export const App = () => {
           newResult = leftOperand * result
           break
         case '/':
+          if (result === 0){
+            return
+          }
           newResult = leftOperand / result
           break
       }
 
       setResult(newResult)
-      setDisplayResult(newResult.toString())
     }
   }
 
   const onClearClick = () => {
     setResult(0)
-    setDisplayResult("0")
     setLeftOperand(0)
     setRightOperand(0)
-    setOperation("")
+    setOperator("")
+  }
+
+  const onDeleteClick = () => {
+    let currentResult = result.toString();
+
+    if (currentResult !== "0") {
+      currentResult = currentResult.slice(0,-1)
+    }
+
+    setResult(Number(currentResult))
   }
 
   return (
@@ -72,13 +80,15 @@ export const App = () => {
       <Display 
       leftOperand={leftOperand} 
       rightOperand={rightOperand} 
-      operation={operation} 
-      result={result}/>
+      operator={operator} 
+      result={result}
+      />
       <NumPad
         onNumberClick={onNumberClick}
         onClearClick={onClearClick}
         onOperatorClick={onOperatorClick}
         onEqualClick={onEqualClick}
+        onDeleteClick={onDeleteClick}
       />
     </React.Fragment>
   )

@@ -5,19 +5,19 @@ import React from 'react'
 https://www.twilio.com/blog/intro-custom-button-component-typescript-react
 
 interface Props {
-    border: string;
+    border?: string;
     children?: React.ReactNode;
-    height: string;
+    height?: string;
     onClick: () => void;
-    width: string;
+    width?: string;
   }
 
 const Button: React.FC<Props> = ({ 
     border,
     children,
-    height,
+    height = '50px',
     onClick, 
-    width
+    width = '50px'
   }) => { 
   return (
     <button 

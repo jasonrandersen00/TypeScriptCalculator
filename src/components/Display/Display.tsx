@@ -4,14 +4,14 @@ import React from 'react'
 interface Props {
     leftOperand: number;
     rightOperand: number;
-    operation: string;
+    operator: string;
     result: number;
 }
 
 const Display: React.FC<Props> = ({
     leftOperand,
     rightOperand,
-    operation,
+    operator,
     result
 }) => {
     return (
@@ -21,7 +21,7 @@ const Display: React.FC<Props> = ({
                     border: "line",
                     backgroundColor: "white",
                     height: "25px",
-                }}>{leftOperand ? leftOperand : ""}{leftOperand ? (operation) : ""}{rightOperand ? rightOperand + "=" : ""}</div>
+                }}>{leftOperand ? leftOperand : ""}{leftOperand ? (operator) : ""}{rightOperand ? rightOperand + "=" + result : ""}</div>
             <div
                 style={{
                     border: "line",
